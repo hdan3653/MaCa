@@ -1,10 +1,16 @@
 package ewha.appsolute.maca
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_vocacard.*
 
 class MainActivity : AppCompatActivity() {
     /*
@@ -31,8 +37,18 @@ class MainActivity : AppCompatActivity() {
         )
 
         val adapter = VocaCardAdapter(wordList)
-
         vocaCardView.adapter=adapter
         vocaCardView.layoutManager=GridLayoutManager(this,2)
+    }
+
+    fun vocaCardPopup() {
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.wordcard, null)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .create()
+
+        alertDialog.setView(view)
+        alertDialog.show()
     }
 }
