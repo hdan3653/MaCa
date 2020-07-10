@@ -18,7 +18,7 @@ class VocaCardAdapter(val list: WordList): RecyclerView.Adapter<VocaCardViewHold
     }
 
     override fun getItemCount(): Int {
-        return list.index.count()
+        return list.getItemCount()
     }
 
     override fun onBindViewHolder(holder: VocaCardViewHolder, position: Int) {

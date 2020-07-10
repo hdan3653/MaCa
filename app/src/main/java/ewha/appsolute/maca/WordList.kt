@@ -2,9 +2,18 @@ package ewha.appsolute.maca
 
 import android.util.Log
 
-class WordList () {
-    var wordlist = ArrayList<Word>()
-    var index = ArrayList<Int>()
+class WordList {
+    private var wordlist = ArrayList<Word>()
+    private var index = ArrayList<Int>()
+
+    fun getItemCount(): Int {
+        return index.size
+    }
+
+    fun shuffle() {
+        index.shuffle()
+        Log.d("Info ::: ", "Shuffled!")
+    }
 
     fun addWord(word:Word) {
         wordlist.add(word)
@@ -14,10 +23,10 @@ class WordList () {
 
     fun printWordList() {
         for(i in 0..index.lastIndex) {
-            var val1 = index[i]
-            var id = wordlist[i].id
-            var voca = wordlist[i].voca
-            Log.println(Log.DEBUG, "", "$i\t:\tindex[$i] = $val1\t||\tid=$id\t$voca")
+            var index = index[i]
+            var id = wordlist[index].id
+            var voca = wordlist[index].voca
+            Log.println(Log.DEBUG, "", "$i\t:\tindex[$i] = $index\t||\tid=$id\t$voca")
         }
     }
 

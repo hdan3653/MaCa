@@ -1,9 +1,6 @@
 package ewha.appsolute.maca
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface WordDAO {
@@ -14,11 +11,11 @@ interface WordDAO {
     fun getWord(voca: String): List<Word>
 
     @Insert
-    fun insert(vararg people: Word)
+    fun insert(word: Word)
 
-    @Insert
-    fun insertAll(vararg words: Word)
+    @Update
+    fun update(words: Word)
 
-    @Delete
-    fun delete(words: Word)
+    @Query("DELETE FROM WORD WHERE VOCA IN (:voca)")
+    fun delete(voca: String)
 }

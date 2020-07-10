@@ -1,18 +1,13 @@
 package ewha.appsolute.maca
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_vocacard.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     /*
@@ -23,24 +18,52 @@ class MainActivity : AppCompatActivity() {
     - deletion
     - sorting
      */
+    var manager = AppManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val db = Room.databaseBuilder(
+        manager.database = Room.databaseBuilder(
             applicationContext,
             WordDB::class.java, "database-name"
         ).build()
 
-        var wordList = WordList()
-        testData(wordList)                          //TEMP
-        wordList.printWordList()
+        Thread {
+            var list:List<Word> = manager.database.wordDao().getAll()
+            if(list.isEmpty()) {
+                testData(manager.wordList)//TEMP
+            } else {
+                for (item in list) {
+                    manager.wordList.addWord(item)
+                }
+            }
 
-        val adapter = VocaCardAdapter(wordList)
+            //TEST
+            manager.wordList.printWordList()
+            manager.wordList.shuffle()
+            manager.wordList.printWordList()
+
+        }.start()
+
+        val adapter = VocaCardAdapter(manager.wordList)
 
         vocaCardView.adapter = adapter
         vocaCardView.layoutManager = GridLayoutManager(this, 2)
+
+/*      //Insert query
+        Thread {
+            var test = Word(0, "apple", POS.NOUN.ordinal
+                , "사과", "사과의 긴 뜻을 표현하고자 주저리 주저리\n그리고 어쩌구 저쩌구."
+                , false, 0, "2020-06-10", null
+            )
+            manager.database.wordDao().insert(test)
+        }.start()*/
+
+/*      //Delete query
+        Thread {
+            manager.database.wordDao().delete("apple")
+        }.start()*/
     }
 
     fun vocaCardPopup() {
