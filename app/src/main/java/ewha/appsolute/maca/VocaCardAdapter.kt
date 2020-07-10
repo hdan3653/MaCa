@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_vocacard.view.*
 
-class VocaCardAdapter(val list: List<WordList>): RecyclerView.Adapter<VocaCardViewHolder>(){
+class VocaCardAdapter(val list: WordList): RecyclerView.Adapter<VocaCardViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocaCardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_vocacard,parent,false)
         return VocaCardViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return list.count()
+        return list.index.count()
     }
 
     override fun onBindViewHolder(holder: VocaCardViewHolder, position: Int) {
-        holder.containerView.voca.text=list[position].voca
+        holder.containerView.voca.text=list.getWordByIndex(position).voca
     }
 }
