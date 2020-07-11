@@ -11,7 +11,7 @@ import java.security.AccessController.getContext
 
 //list 데이터 타입 수정함
 
-class VocaCardAdapter(val list: WordList): RecyclerView.Adapter<VocaCardViewHolder>(){
+class VocaCardAdapter(val list: WordList,  val context: Context): RecyclerView.Adapter<VocaCardViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocaCardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_vocacard,parent,false)
         return VocaCardViewHolder(view)
@@ -22,6 +22,6 @@ class VocaCardAdapter(val list: WordList): RecyclerView.Adapter<VocaCardViewHold
     }
 
     override fun onBindViewHolder(holder: VocaCardViewHolder, position: Int) {
-        holder.containerView.voca.text=list.getWordByIndex(position).voca
+        holder.bindItem(list.getWordByIndex(position), context)
     }
 }

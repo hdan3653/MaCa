@@ -13,10 +13,11 @@ import java.security.AccessController.getContext
 
 class VocaCardViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer{
-    fun bindItem(data : Word, main:MainActivity) {
+    fun bindItem(data : Word, context: Context) {
+        val main = MainActivity()
         containerView.voca.text = data.voca //수정함
         containerView.setOnClickListener {
-            main.vocaCardPopup()
+            main.vocaCardPopup(context)
         }
     }
 }
