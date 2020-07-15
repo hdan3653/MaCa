@@ -75,9 +75,10 @@ class MainActivity : AppCompatActivity() {
         }.start()*/
     }
 
-    fun vocaCardPopup(context: Context) {
+    fun vocaCardPopup(context: Context, position: Int) {
         var intent = Intent(context, WordCardPopup::class.java)
         context.startActivity(intent)
+        intent.putExtra("position",position)
     }
 
     private fun testData(wordList: WordList) {

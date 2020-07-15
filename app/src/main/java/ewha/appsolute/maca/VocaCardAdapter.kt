@@ -19,6 +19,6 @@ class VocaCardAdapter(val list: WordList, val context:Context): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: VocaCardViewHolder, position: Int) {
-        holder.bindItem(list.getWordByIndex(position), context)
+        holder.bindItem(list.getWordByIndex(position), context, position)
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="40dp"
@@ -25,10 +26,10 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4">
+            app:layout_constraintVertical_bias="0.44">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/voca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -45,14 +46,15 @@
                 android:id="@+id/imageButton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:backgroundTint="#00FFFFFF"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:tint="#2F5597"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/voca"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/voca"
                 app:srcCompat="@drawable/ic_volume" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

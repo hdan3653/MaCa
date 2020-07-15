@@ -8,11 +8,11 @@ import kotlinx.android.synthetic.main.item_vocacard.view.*
 
 class VocaCardViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer{
-    fun bindItem(data : Word, context: Context) {
+    fun bindItem(data : Word, context: Context, position: Int) {
         val main = MainActivity()
         containerView.voca.text = data.voca //수정함
         containerView.setOnClickListener {
-            main.vocaCardPopup(context)
+            main.vocaCardPopup(context, position)
         }
     }
 }
