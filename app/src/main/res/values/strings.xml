@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MaCa</string>
+
+    <string name="btn_desc_main_add">Add Button</string>
+    <string name="btn_desc_main_sort">Sort Button</string>
+    <string name="img_desc_main_logo">Logo</string>
+    <string name="btn_desc_main_storage">Storage Button</string>
+    <string name="btn_desc_main_delete">Delete Button</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_confirm">OK</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_desc_new_translate">Translate Button</string>
+    <string name="img_desc_new_translated">Translated</string>
+    <string name="btn_pos_n">n</string>
+    <string name="btn_pos_a">a</string>
+    <string name="btn_pos_ad">ad</string>
+    <string name="btn_pos_v">v</string>
+    <string name="btn_pos_prep">prep</string>
+    <string name="btn_pos_id">id</string>
 </resources>

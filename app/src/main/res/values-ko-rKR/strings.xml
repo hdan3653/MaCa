@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MaCa</string>
+    <string name="btn_desc_main_add">추가 버튼</string>
+    <string name="btn_desc_main_sort">정렬 버튼</string>
+    <string name="img_desc_main_logo">앱 로고</string>
+    <string name="btn_desc_main_storage">보관함 버튼</string>
+    <string name="btn_desc_main_delete">삭제 버튼</string>
+    <string name="btn_cancel">취소</string>
+    <string name="btn_confirm">확인</string>
+    <string name="btn_add">추가</string>
+    <string name="btn_desc_new_translate">번역 버튼</string>
+    <string name="img_desc_new_translated">번역됨</string>
+    <string name="btn_pos_n">명</string>
+    <string name="btn_pos_a">형</string>
+    <string name="btn_pos_ad">부</string>
+    <string name="btn_pos_v">동</string>
+    <string name="btn_pos_prep">전</string>
+    <string name="btn_pos_id">숙</string>
+</resources>

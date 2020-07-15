@@ -24,26 +24,29 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/btn_sort"
                 android:layout_width="74dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#00FFFFFF"
+                android:contentDescription="@string/btn_desc_main_sort"
                 android:tint="#4A4A4A"
                 app:srcCompat="@drawable/ic_sort" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/img_logo"
                 android:layout_width="232dp"
                 android:layout_height="43dp"
+                android:contentDescription="@string/img_desc_main_logo"
                 app:srcCompat="@drawable/logo" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/btn_add"
                 android:layout_width="69dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#00FFFFFF"
+                android:contentDescription="@string/btn_desc_main_add"
                 android:tint="#4A4A4A"
                 app:srcCompat="@drawable/ic_pen" />
 
@@ -52,7 +55,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vocaCardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -66,11 +69,12 @@
             android:paddingBottom="3dp">
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/btn_storage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#00FFFFFF"
+                android:contentDescription="@string/btn_desc_main_storage"
                 android:tint="#4A4A4A"
                 app:srcCompat="@drawable/ic_folder" />
 
@@ -80,11 +84,12 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/btn_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#00FFFFFF"
+                android:contentDescription="@string/btn_desc_main_delete"
                 android:tint="#4A4A4A"
                 app:srcCompat="@drawable/ic_trash" />
         </LinearLayout>
