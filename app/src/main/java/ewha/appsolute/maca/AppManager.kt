@@ -25,14 +25,14 @@ class AppManager(context: Context) {
             }
     }
 
-    val requestQueue: RequestQueue by lazy {
+    private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }
 
     fun addToRequestQueue(req: JsonObjectRequest) {
-        req.headers.put("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
-        req.headers.put("X-Naver-Client-Id", client_id)
-        req.headers.put("X-Naver-Client-Secret", client_secret)
+//        req.headers["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8"
+//        req.headers["X-Naver-Client-Id"] = client_id
+//        req.headers["X-Naver-Client-Secret"] = client_secret
 
         requestQueue.add(req)
     }

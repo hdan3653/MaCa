@@ -3,14 +3,11 @@ package ewha.appsolute.maca
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.wordcard.*
 
 /* TODO 메인 화면
     - 삭제 기능
@@ -53,9 +50,9 @@ class MainActivity : AppCompatActivity() {
             val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.popup_newword, null)
 
-            val alertDialog = AlertDialog.Builder(this).create()
+            val alertDialog = NewWordPopup(this)
 
-            alertDialog.setView(view)
+            alertDialog.setContentView(view)
             alertDialog.show()
         }
 
