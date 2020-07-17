@@ -10,10 +10,8 @@ class WordCardPopup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wordcard)
 
-        var manager = AppManager
-
         var voca=findViewById<TextView>(R.id.voca)
         var position:Int=intent.getIntExtra("position",0)
-        voca.text = manager.wordList.getWordByIndex(position).voca
+        voca.text = AppManager.wordList.getWordByIndex(position).voca
     }
 }

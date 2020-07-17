@@ -17,35 +17,34 @@ import kotlinx.android.synthetic.main.wordcard.*
     - 정렬 기능
 */
 class MainActivity : AppCompatActivity() {
-    var manager = AppManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        manager.database = Room.databaseBuilder(
+        AppManager.database = Room.databaseBuilder(
             applicationContext,
             WordDB::class.java, "database-name"
         ).build()
 
         Thread {
-            var list:List<Word> = manager.database.wordDao().getAll()
+            var list:List<Word> = AppManager.database.wordDao().getAll()
             if(list.isEmpty()) {
-                testData(manager.wordList)//TEMP
+                testData(AppManager.wordList)//TEMP
             } else {
                 for (item in list) {
-                    manager.wordList.addWord(item)
+                    AppManager.wordList.addWord(item)
                 }
             }
 
             //TEST
-            manager.wordList.printWordList()
-            manager.wordList.shuffle()
-            manager.wordList.printWordList()
+            AppManager.wordList.printWordList()
+            AppManager.wordList.shuffle()
+            AppManager.wordList.printWordList()
 
         }.start()
 
-        val adapter = VocaCardAdapter(manager.wordList, this)
+        val adapter = VocaCardAdapter(AppManager.wordList, this)
 
         vocaCardView.adapter = adapter
         vocaCardView.layoutManager = GridLayoutManager(this, 2)
