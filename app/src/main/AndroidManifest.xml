@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WordCardPopup"></activity>
+        <activity android:name=".NewWordPopup"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

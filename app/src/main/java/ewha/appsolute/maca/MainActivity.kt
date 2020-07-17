@@ -81,6 +81,12 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("position",position)
     }
 
+    fun newCardPopup(context: Context, position: Int){
+        var intent = Intent(context, NewWordPopup::class.java)
+        context.startActivity(intent)
+        intent.putExtra("position", position)
+    }
+
     private fun testData(wordList: WordList) {
         wordList.addWord(Word(0, "apple", POS.NOUN.ordinal
             , "사과", "사과의 긴 뜻을 표현하고자 주저리 주저리\n그리고 어쩌구 저쩌구."

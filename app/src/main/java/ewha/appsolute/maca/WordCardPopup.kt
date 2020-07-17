@@ -1,5 +1,6 @@
 package ewha.appsolute.maca
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,5 +16,12 @@ class WordCardPopup : AppCompatActivity() {
         var voca=findViewById<TextView>(R.id.voca)
         var position:Int=intent.getIntExtra("position",0)
         voca.text = manager.wordList.getWordByIndex(position).voca
+
+
+        var cardView = findViewById<CardView>(R.id.CardView)
+        cardView.setOnClickListener {
+            val main = MainActivity()
+            main.newCardPopup(this,position)
+        }
     }
 }
