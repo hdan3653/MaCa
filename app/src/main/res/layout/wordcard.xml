@@ -30,7 +30,7 @@
             app:layout_constraintVertical_bias="0.44">
 
             <TextView
-                android:id="@+id/voca"
+                android:id="@+id/text_voca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -54,10 +54,10 @@
                 android:scaleY="1.5"
                 android:tint="#2F5597"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/voca"
+                app:layout_constraintEnd_toStartOf="@+id/text_voca"
                 app:layout_constraintHorizontal_bias="0.222"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/voca"
+                app:layout_constraintTop_toTopOf="@+id/text_voca"
                 app:layout_constraintVertical_bias="0.523"
                 app:srcCompat="@drawable/ic_volume" />
         </androidx.constraintlayout.widget.ConstraintLayout>

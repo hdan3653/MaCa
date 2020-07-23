@@ -6,20 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="10dp"
-    android:background="#7f7f7f"
+    android:background="@color/color_white_grey"
     android:clickable="true"
     android:outlineProvider="none"
-    app:cardBackgroundColor="#E9E9E9"
+    app:cardBackgroundColor="@color/color_white_grey"
     app:contentPadding="1dp">
 
     <TextView
-        android:id="@+id/voca"
+        android:id="@+id/text_voca"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/roboto"
         android:outlineProvider="paddedBounds"
-        android:text="voca"
         android:textAlignment="center"
         android:textColor="#7F7F7F"
         android:textSize="20sp"

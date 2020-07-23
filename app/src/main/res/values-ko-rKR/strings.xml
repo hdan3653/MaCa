@@ -17,4 +17,5 @@
     <string name="btn_pos_v">동</string>
     <string name="btn_pos_prep">전</string>
     <string name="btn_pos_id">숙</string>
+    <string name="text_selection">%d개 선택됨.</string>
 </resources>

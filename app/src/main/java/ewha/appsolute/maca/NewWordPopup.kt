@@ -117,6 +117,12 @@ class NewWordPopup(context: Context) : AlertDialog(context) {
             return false
         }
 
+        //같은 단어 추가할 수 없도록?
+        if (AppManager.wordList.isExist(edit_translate.text.toString())) {
+//            Toast.makeText(context, context.getString(R.string.warning_duplicated_voca), Toast.LENGTH_SHORT)
+            return false
+        }
+
         return true
     }
 }

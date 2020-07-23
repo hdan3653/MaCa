@@ -4,6 +4,11 @@ object AppManager {
     lateinit var database: WordDB
     var wordList = WordList()
 
+    //main activity
+    var selectionMode: Boolean = false // true:삭제 / false:기본
+    var selectionCount: Int = 0
+    var selected = ArrayList<Int>()
+
     //papago
     const val url = "https://openapi.naver.com/v1/papago/n2mt"
     const val client_id = "JNi1monoSUrGcVc6SNHq"

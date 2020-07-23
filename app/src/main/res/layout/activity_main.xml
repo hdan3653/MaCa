@@ -26,12 +26,23 @@
             <ImageButton
                 android:id="@+id/btn_sort"
                 android:layout_width="74dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#00FFFFFF"
                 android:contentDescription="@string/btn_desc_main_sort"
                 android:tint="#4A4A4A"
+                android:visibility="visible"
                 app:srcCompat="@drawable/ic_sort" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="74dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel"
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/img_logo"
@@ -43,12 +54,23 @@
             <ImageButton
                 android:id="@+id/btn_add"
                 android:layout_width="69dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="#00FFFFFF"
                 android:contentDescription="@string/btn_desc_main_add"
                 android:tint="#4A4A4A"
                 app:srcCompat="@drawable/ic_pen" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="69dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/btn_confirm"
+                android:textColor="@color/color_blue"
+                android:textSize="16sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -76,10 +98,15 @@
                 android:tint="#4A4A4A"
                 app:srcCompat="@drawable/ic_folder" />
 
-            <Space
+            <TextView
+                android:id="@+id/text_selection"
                 android:layout_width="152dp"
-                android:layout_height="32dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/text_selection"
+                android:textAlignment="center"
+                android:visibility="invisible" />
 
             <ImageButton
                 android:id="@+id/btn_delete"

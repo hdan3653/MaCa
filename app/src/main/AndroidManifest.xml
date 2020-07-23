@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WordCardPopup"></activity>
+        <activity android:name=".WordCardPopup2"></activity>
         <activity android:name=".StorageActivity"></activity>
 
         <meta-data

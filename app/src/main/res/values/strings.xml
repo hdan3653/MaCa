@@ -17,4 +17,5 @@
     <string name="btn_pos_v">v</string>
     <string name="btn_pos_prep">prep</string>
     <string name="btn_pos_id">id</string>
+    <string name="text_selection">%d words selected.</string>
 </resources>

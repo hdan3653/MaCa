@@ -1,6 +1,7 @@
 package ewha.appsolute.maca
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -26,18 +27,23 @@ class WordCardPopup : AppCompatActivity() {
 
         var manager = AppManager
 
-        var voca=findViewById<TextView>(R.id.voca)
+        var voca=findViewById<TextView>(R.id.text_voca)
+
         var position:Int=intent.getIntExtra("position",0)
         voca.text = manager.wordList.getWordByIndex(position).voca
+
         var ttsButton=findViewById<ImageButton>(R.id.ttsButton)
         ttsButton.setOnClickListener{
             var message=voca.text
             tts.speak(message)
         }
+
         var cardView = findViewById<CardView>(R.id.CardView)
         cardView.setOnClickListener {
-            val main = MainActivity()
-            main.newCardPopup(this,position)
+            var intent = Intent(this, WordCardPopup2::class.java)
+            //여기 순서가 틀려서 position 값이 안 넘어갔음.
+            intent.putExtra("position", position)
+            this.startActivity(intent)
         }
     }
 

@@ -4,7 +4,7 @@ import androidx.room.*
 
 @Dao
 interface WordDAO {
-    @Query("SELECT * FROM WORD")
+    @Query("SELECT * FROM WORD ORDER BY ID DESC")
     fun getAll(): List<Word>
 
     @Query("SELECT * FROM WORD WHERE VOCA IN (:voca)")
