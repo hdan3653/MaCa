@@ -3,49 +3,45 @@ package ewha.appsolute.maca
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.wordcard.*
 
 /* TODO 메인 화면
     - 삭제 기능
     - 정렬 기능
 */
 class MainActivity : AppCompatActivity() {
-    var manager = AppManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        manager.database = Room.databaseBuilder(
+        AppManager.database = Room.databaseBuilder(
             applicationContext,
             WordDB::class.java, "database-name"
         ).build()
 
         Thread {
-            var list:List<Word> = manager.database.wordDao().getAll()
+            var list:List<Word> = AppManager.database.wordDao().getAll()
             if(list.isEmpty()) {
-                testData(manager.wordList)//TEMP
+                testData(AppManager.wordList)//TEMP
             } else {
                 for (item in list) {
-                    manager.wordList.addWord(item)
+                    AppManager.wordList.addWord(item)
                 }
             }
 
             //TEST
-            manager.wordList.printWordList()
-            manager.wordList.shuffle()
-            manager.wordList.printWordList()
+            AppManager.wordList.printWordList()
+            AppManager.wordList.shuffle()
+            AppManager.wordList.printWordList()
 
         }.start()
 
-        val adapter = VocaCardAdapter(manager.wordList, this)
+        val adapter = VocaCardAdapter(AppManager.wordList, this)
 
         vocaCardView.adapter = adapter
         vocaCardView.layoutManager = GridLayoutManager(this, 2)
@@ -54,20 +50,14 @@ class MainActivity : AppCompatActivity() {
             val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.popup_newword, null)
 
-            val alertDialog = AlertDialog.Builder(this).create()
+            val alertDialog = NewWordPopup(this)
 
-            alertDialog.setView(view)
+            alertDialog.setContentView(view)
             alertDialog.show()
+            alertDialog.setOnDismissListener{
+                adapter.notifyDataSetChanged()
+            }
         }
-
-/*      //Insert query
-        Thread {
-            var test = Word(0, "apple", POS.NOUN.ordinal
-                , "사과", "사과의 긴 뜻을 표현하고자 주저리 주저리\n그리고 어쩌구 저쩌구."
-                , false, 0, "2020-06-10", null
-            )
-            manager.database.wordDao().insert(test)
-        }.start()*/
 
 /*      //Delete query
         Thread {

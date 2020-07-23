@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:gravity="center_horizontal|center_vertical"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -23,7 +13,6 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="52dp" />
-
     </TableRow>
 
     <TableRow
@@ -55,7 +44,7 @@
                     android:inputType="textAutoCorrect"
                     android:labelFor="@id/btn_translate"
                     android:singleLine="true"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/color_grey" />
 
                 <ImageButton
                     android:id="@+id/btn_translate"
@@ -64,7 +53,7 @@
                     android:layout_gravity="center"
                     android:background="#FFFFFF"
                     android:contentDescription="@string/btn_desc_new_translate"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/color_grey"
                     app:srcCompat="@drawable/ic_search" />
 
             </LinearLayout>
@@ -97,7 +86,7 @@
                     android:layout_gravity="center"
                     android:background="#FFFFFF"
                     android:contentDescription="@string/img_desc_new_translated"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/color_grey"
                     app:srcCompat="@drawable/ic_translate" />
 
                 <EditText
@@ -109,7 +98,7 @@
                     android:ems="10"
                     android:fontFamily="@font/roboto"
                     android:labelFor="@id/img_translated"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/color_grey" />
 
             </LinearLayout>
         </FrameLayout>
@@ -135,7 +124,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/color_light_grey" />
 
     </TableRow>
 
@@ -151,71 +140,84 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <ToggleButton
-                android:id="@+id/toggle_pos_n"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:background="@drawable/toggle_button"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimary"
-                android:textOff="@string/btn_pos_n"
-                android:textOn="@string/btn_pos_n" />
+            <RadioGroup
+                android:id="@+id/toggle_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <ToggleButton
-                android:id="@+id/toggle_pos_a"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:background="@drawable/toggle_button"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimary"
-                android:textOff="@string/btn_pos_a"
-                android:textOn="@string/btn_pos_a" />
+                <ToggleButton
+                    android:id="@+id/toggle_pos_ad"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@drawable/toggle_button"
+                    android:checked="true"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/color_grey"
+                    android:textOff="@string/btn_pos_ad"
+                    android:textOn="@string/btn_pos_ad" />
 
-            <ToggleButton
-                android:id="@+id/toggle_pos_ad"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:background="@drawable/toggle_button"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimary"
-                android:textOff="@string/btn_pos_ad"
-                android:textOn="@string/btn_pos_ad" />
+                <ToggleButton
+                    android:id="@+id/toggle_pos_a"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@drawable/toggle_button"
+                    android:checked="false"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/color_grey"
+                    android:textOff="@string/btn_pos_a"
+                    android:textOn="@string/btn_pos_a" />
 
-            <ToggleButton
-                android:id="@+id/toggle_pos_v"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:background="@drawable/toggle_button"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimary"
-                android:textOff="@string/btn_pos_v"
-                android:textOn="@string/btn_pos_v" />
+                <ToggleButton
+                    android:id="@+id/toggle_pos_prep"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@drawable/toggle_button"
+                    android:checked="false"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/color_grey"
+                    android:textOff="@string/btn_pos_prep"
+                    android:textOn="@string/btn_pos_prep" />
 
-            <ToggleButton
-                android:id="@+id/toggle_pos_prep"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:background="@drawable/toggle_button"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimary"
-                android:textOff="@string/btn_pos_prep"
-                android:textOn="@string/btn_pos_prep" />
+                <ToggleButton
+                    android:id="@+id/toggle_pos_n"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@drawable/toggle_button"
+                    android:checked="false"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/color_grey"
+                    android:textOff="@string/btn_pos_n"
+                    android:textOn="@string/btn_pos_n" />
 
-            <ToggleButton
-                android:id="@+id/toggle_pos_id"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:background="@drawable/toggle_button"
-                android:fontFamily="@font/roboto"
-                android:textColor="@color/colorPrimary"
-                android:textOff="@string/btn_pos_id"
-                android:textOn="@string/btn_pos_id" />
+                <ToggleButton
+                    android:id="@+id/toggle_pos_id"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@drawable/toggle_button"
+                    android:checked="false"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/color_grey"
+                    android:textOff="@string/btn_pos_id"
+                    android:textOn="@string/btn_pos_id" />
+
+                <ToggleButton
+                    android:id="@+id/toggle_pos_v"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:background="@drawable/toggle_button"
+                    android:checked="false"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/color_grey"
+                    android:textOff="@string/btn_pos_v"
+                    android:textOn="@string/btn_pos_v" />
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -242,7 +244,7 @@
                 android:background="#FFFFFF"
                 android:fontFamily="@font/roboto"
                 android:text="@string/btn_cancel"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/color_grey"
                 android:textSize="20sp" />
 
             <Button
@@ -254,7 +256,7 @@
                 android:background="#FFFFFF"
                 android:fontFamily="@font/roboto"
                 android:text="@string/btn_add"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/color_blue"
                 android:textSize="20sp" />
         </LinearLayout>
 
