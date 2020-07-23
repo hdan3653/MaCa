@@ -19,34 +19,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Database Initialize
         AppManager.database = Room.databaseBuilder(
             applicationContext,
             WordDB::class.java, "database-name"
         ).build()
 
-        Thread {
-            var list:List<Word> = AppManager.database.wordDao().getAll()
-            if(list.isEmpty()) {
-                testData(AppManager.wordList)//TEMP
-            } else {
-                for (item in list) {
-                    AppManager.wordList.addWord(item)
-                }
-            }
+        //WordList Initialize
+        AppManager.wordList.init()
+        AppManager.wordList.printWordList()
 
-            //TEST
-            AppManager.wordList.printWordList()
-            AppManager.wordList.shuffle()
-            AppManager.wordList.printWordList()
-
-        }.start()
-
+        //Recycler View
         val adapter = VocaCardAdapter(AppManager.wordList, this)
 
         vocaCardView.adapter = adapter
         vocaCardView.layoutManager = GridLayoutManager(this, 2)
 
-        this.btn_add.setOnClickListener {
+        //Sort Button
+        btn_sort.setOnClickListener {
+
+        }
+
+        //Add Button
+        btn_add.setOnClickListener {
             val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.popup_newword, null)
 
@@ -59,10 +54,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-/*      //Delete query
-        Thread {
-            manager.database.wordDao().delete("apple")
-        }.start()*/
+        //Storage Button
+        btn_storage.setOnClickListener {
+            var intent = Intent(this, StorageActivity::class.java)
+            this.startActivity(intent)
+        }
+
+        //Delete Button
+        btn_delete.setOnClickListener {
+            /*
+                //Delete query
+                Thread {
+                    manager.database.wordDao().delete("apple")
+                }.start()
+            */
+
+        }
+
     }
 
     fun vocaCardPopup(context: Context, position: Int) {

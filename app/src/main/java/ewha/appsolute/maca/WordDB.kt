@@ -10,7 +10,6 @@ abstract class WordDB : RoomDatabase() {
     abstract fun wordDao(): WordDAO
 
     companion object {
-
         private var instance: RoomDatabase? = null
 
         @Synchronized
