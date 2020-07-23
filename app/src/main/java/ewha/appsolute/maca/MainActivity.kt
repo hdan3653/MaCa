@@ -54,16 +54,10 @@ class MainActivity : AppCompatActivity() {
 
             alertDialog.setContentView(view)
             alertDialog.show()
+            alertDialog.setOnDismissListener{
+                adapter.notifyDataSetChanged()
+            }
         }
-
-/*      //Insert query
-        Thread {
-            var test = Word(0, "apple", POS.NOUN.ordinal
-                , "사과", "사과의 긴 뜻을 표현하고자 주저리 주저리\n그리고 어쩌구 저쩌구."
-                , false, 0, "2020-06-10", null
-            )
-            manager.database.wordDao().insert(test)
-        }.start()*/
 
 /*      //Delete query
         Thread {
