@@ -12,15 +12,33 @@ class WordCardPopup3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wordcard3)
 
+        var manager = AppManager
+        var position: Int = intent.getIntExtra("position", 0)
+
+
+        var db : Int? = manager.dbsize
+        var storage : Int? = 0
+
+        dbNum.text="$db 개 중"
+
+        storageNum.text="$storage"
+
+        //닫기
         backButton.setOnClickListener {
             var intent = Intent(this, StorageActivity::class.java)
             this.startActivity(intent)
         }
 
-        var db : Int? = null
-        var storage : Int? = null
-
-        dbNum.text="$db 개 중"
-        storageNum.text="$storage"
+        //터치해서 계속하기
+        frame.setOnClickListener{
+            var intent = Intent(this, WordCardPopup::class.java)
+            intent.putExtra("position",position+1)
+            this.startActivity(intent)
+        }
+        cardview.setOnClickListener {
+            var intent = Intent(this, WordCardPopup::class.java)
+            intent.putExtra("position",position+1)
+            this.startActivity(intent)
+        }
     }
 }

@@ -13,4 +13,7 @@ object AppManager {
     const val url = "https://openapi.naver.com/v1/papago/n2mt"
     const val client_id = "JNi1monoSUrGcVc6SNHq"
     const val client_secret = "uAKk1kCBbn"
+
+    //WordCard3
+    var dbsize: Int = wordList.getItemCount()
 }

@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import kotlinx.android.synthetic.main.wordcard.*
+import kotlinx.android.synthetic.main.wordcard3.*
 
 class WordCardPopup2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +34,28 @@ class WordCardPopup2 : AppCompatActivity() {
         }
         pos.text = posText
 
-        var cardView = findViewById<CardView>(R.id.CardView)
-        cardView.setOnClickListener {
-            var intent = Intent(this, WordCardPopup3::class.java)
-            intent.putExtra("position", position)
-            this.startActivity(intent)
+        //swipe
+        val swipeDetector = SwipeDetector()
+        var cardview = findViewById<CardView>(R.id.CardView)
+
+        cardview.setOnTouchListener(swipeDetector)
+        cardview.setOnClickListener{
+            if(swipeDetector.swipeDetected()){
+                if(swipeDetector.action.equals(SwipeDetector.Action.LR)){
+                    var intent = Intent(this, WordCardPopup::class.java)
+                    intent.putExtra("position",position+1)
+                    this.startActivity(intent)
+                }else if(swipeDetector.action.equals(SwipeDetector.Action.RL)){
+                    //외웠어요 +1 하기
+                    var intent = Intent(this, WordCardPopup::class.java)
+                    intent.putExtra("position",position+1)
+                    this.startActivity(intent)
+                }
+            }else{
+                var intent = Intent(this, WordCardPopup3::class.java)
+                intent.putExtra("position", position)
+                this.startActivity(intent)
+            }
         }
     }
 }
