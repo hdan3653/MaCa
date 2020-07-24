@@ -21,6 +21,7 @@
         <activity android:name=".WordCardPopup"></activity>
         <activity android:name=".WordCardPopup2"></activity>
         <activity android:name=".StorageActivity"></activity>
+        <activity android:name=".WordCardPopup3"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
