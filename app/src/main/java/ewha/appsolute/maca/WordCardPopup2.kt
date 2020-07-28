@@ -1,11 +1,15 @@
 package ewha.appsolute.maca
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import kotlinx.android.synthetic.main.newwordcard.*
 import kotlinx.android.synthetic.main.wordcard.*
+import kotlinx.android.synthetic.main.wordcard.editbutton
 import kotlinx.android.synthetic.main.wordcard3.*
 
 class WordCardPopup2 : AppCompatActivity() {
@@ -33,6 +37,21 @@ class WordCardPopup2 : AppCompatActivity() {
             POS.IDIOM.ordinal -> posText = "ID."
         }
         pos.text = posText
+
+        editbutton.setOnClickListener {
+            val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view = inflater.inflate(R.layout.popup_editword, null)
+
+            val alertDialog = EditWordPopup(this)
+
+            val adapter = VocaCardAdapter(AppManager.wordList, this)
+
+            alertDialog.setContentView(view)
+            alertDialog.show()
+            alertDialog.setOnDismissListener{
+                adapter.notifyDataSetChanged()
+            }
+        }
 
         //swipe
         val swipeDetector = SwipeDetector()

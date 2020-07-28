@@ -6,11 +6,14 @@ import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.wordcard.*
 import java.util.*
 
 class WordCardPopup : AppCompatActivity() {
@@ -36,6 +39,21 @@ class WordCardPopup : AppCompatActivity() {
         ttsButton.setOnClickListener{
             var message=voca.text
             tts.speak(message)
+        }
+
+        editbutton.setOnClickListener {
+            val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view = inflater.inflate(R.layout.popup_editword, null)
+
+            val alertDialog = EditWordPopup(this)
+
+            val adapter = VocaCardAdapter(AppManager.wordList, this)
+
+            alertDialog.setContentView(view)
+            alertDialog.show()
+            alertDialog.setOnDismissListener{
+                adapter.notifyDataSetChanged()
+            }
         }
 
         var cardView = findViewById<CardView>(R.id.CardView)
