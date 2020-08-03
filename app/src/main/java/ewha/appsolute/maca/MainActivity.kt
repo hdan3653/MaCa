@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                 AppManager.wordList.printWordList(index)
 
                 Thread {
-                    var dump: Word = AppManager.wordList.getWordByIndex(index)
+                    var dump: Word = AppManager.wordList.getWord(index) as Word
                     AppManager.database.wordDao().delete(dump.voca)
                     AppManager.wordList.removeWord(index)
                 }.start()

@@ -15,7 +15,6 @@ class WordCardPopup3 : AppCompatActivity() {
         var manager = AppManager
         var position: Int = intent.getIntExtra("position", 0)
 
-
         var db : Int? = manager.dbsize
         var storage : Int? = 0
 

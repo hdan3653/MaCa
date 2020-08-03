@@ -18,4 +18,6 @@
     <string name="btn_pos_prep">prep</string>
     <string name="btn_pos_id">id</string>
     <string name="text_selection">%d words selected.</string>
+    <string name="btn_desc_popup_tts">Text to Speech Button</string>
+    <string name="btn_desc_popup_edit">Edit Button</string>
 </resources>

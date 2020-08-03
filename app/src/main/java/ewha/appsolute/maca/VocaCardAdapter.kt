@@ -24,6 +24,6 @@ class VocaCardAdapter(val list: WordList, val context:Context): RecyclerView.Ada
 
     override fun onBindViewHolder(holder: VocaCardViewHolder, position: Int) {
         holder.containerView.setBackgroundColor(context.getColor(R.color.color_white_grey))
-        holder.textView.text = AppManager.wordList.getWordByIndex(position).voca
+        holder.textView.text = AppManager.wordList.getWord(position)?.voca
     }
 }

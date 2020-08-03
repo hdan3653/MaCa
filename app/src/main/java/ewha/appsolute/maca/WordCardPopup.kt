@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.wordcard.*
 import java.util.*
+import ewha.appsolute.maca.Word
 
 class WordCardPopup : AppCompatActivity() {
 
@@ -33,7 +34,12 @@ class WordCardPopup : AppCompatActivity() {
         var voca=findViewById<TextView>(R.id.text_voca)
 
         var position:Int=intent.getIntExtra("position",0)
-        voca.text = manager.wordList.getWordByIndex(position).voca
+        var word: Word? = manager.wordList.getWord(position)
+        if(word == null) {
+
+        }
+        voca.text = word?.voca
+
 
         var ttsButton=findViewById<ImageButton>(R.id.ttsButton)
         ttsButton.setOnClickListener{
@@ -76,10 +82,6 @@ class TTS(private val context: Context) : TextToSpeech.OnInitListener{
     private var tts: TextToSpeech?=null
 
     override fun onInit(status: Int) {
-        if(Build.VERSION.SDK_INT< Build.VERSION_CODES.LOLLIPOP){
-            Toast.makeText(context, "Android version must be higher than Lollipop", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         tts = TextToSpeech(context){
             if(it == TextToSpeech.SUCCESS){

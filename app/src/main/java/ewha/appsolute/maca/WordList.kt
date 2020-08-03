@@ -1,6 +1,8 @@
 package ewha.appsolute.maca
 
 import android.util.Log
+import java.lang.Exception
+import java.lang.IndexOutOfBoundsException
 
 class WordList {
     private var wordlist = ArrayList<Word>()
@@ -40,11 +42,11 @@ class WordList {
     }
 
     fun removeWord(i: Int) {
-        var dump: Word = getWordByIndex(i)
+        var dump: Word = getWord(i) as Word
         wordlist.remove(dump)
         index = ArrayList()
-        for (i in 0 until wordlist.lastIndex) {
-            index.add(i)
+        for (j in 0 until wordlist.lastIndex) {
+            index.add(j)
         }
     }
 
@@ -64,8 +66,32 @@ class WordList {
         Log.println(Log.DEBUG, "", "$at\t:\tindex[$at] = $index\t||\tid=$id\t$voca")
     }
 
-    fun getWordByIndex(i: Int): Word {
-        return wordlist[index[i]]
+    fun getWord(i: Int): Word? {
+        var word: Word? = try {
+            wordlist[index[i]]
+        } catch (e: IndexOutOfBoundsException) {
+            null
+        }
+
+        return word
+    }
+
+    fun getWord(s: String): Word? {
+
+        var word: Word? = null
+
+        try {
+            for(i in 0..wordlist.size) {
+                if(wordlist[index[i]].voca == s) {
+                    word = wordlist[index[i]]
+                    break
+                }
+            }
+        } catch (e: Exception) {
+            word = null
+        }
+
+        return word
     }
 
     fun isExist(voca: String): Boolean {
