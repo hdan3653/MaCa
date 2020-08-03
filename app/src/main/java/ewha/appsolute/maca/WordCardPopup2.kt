@@ -1,32 +1,23 @@
 package ewha.appsolute.maca
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import kotlinx.android.synthetic.main.wordcard.editbutton
+import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.wordcard2.*
 
-class WordCardPopup2 : AppCompatActivity() {
+class WordCardPopup2(context: Context, private val word: Word) : AlertDialog(context) {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wordcard2)
 
-        var manager = AppManager
+        meaning3.text = word.primary
+        meaning4.text = word.secondary
 
-        var meaning = findViewById<TextView>(R.id.meaning)
-        var meaning2 = findViewById<TextView>(R.id.meaning2)
-        var pos = findViewById<TextView>(R.id.pos)
-        var position: Int = intent.getIntExtra("position", 0)
-        var word: Word = manager.wordList.getWord(position) as Word
-        meaning.text = word.primary
-        meaning2.text = word.secondary
-        var posNum = word.pos
         var posText: String? = null
-
-        when (posNum) {
+        when (word.pos) {
             POS.NOUN.ordinal -> posText = "N."
             POS.ADJECTIVE.ordinal -> posText = "A."
             POS.VERB.ordinal -> posText = "V."
@@ -34,15 +25,16 @@ class WordCardPopup2 : AppCompatActivity() {
             POS.PREPOSITION.ordinal -> posText = "PREP."
             POS.IDIOM.ordinal -> posText = "ID."
         }
-        pos.text = posText
+        pos2.text = posText
 
-        editbutton.setOnClickListener {
-            val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+        editbutton2.setOnClickListener {
+            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.popup_editword, null)
 
-            val alertDialog = EditWordPopup(this)
+            val alertDialog = EditWordPopup(context, word)
 
-            val adapter = VocaCardAdapter(AppManager.wordList, this)
+            val adapter = VocaCardAdapter(AppManager.wordList, context)
 
             alertDialog.setContentView(view)
             alertDialog.show()
@@ -53,26 +45,25 @@ class WordCardPopup2 : AppCompatActivity() {
 
         //swipe
         val swipeDetector = SwipeDetector()
-        var cardview = findViewById<CardView>(R.id.CardView)
 
-        cardview.setOnTouchListener(swipeDetector)
-        cardview.setOnClickListener{
+        tableLayout2.setOnTouchListener(swipeDetector)
+        tableLayout2.setOnClickListener{
             if(swipeDetector.swipeDetected()){
                 if(swipeDetector.action == SwipeDetector.Action.LR){
-                    var intent = Intent(this, WordCardPopup::class.java)
-                    intent.putExtra("position",position+1)
-                    this.startActivity(intent)
+                    Log.e("SWIPE :: ", "모르겠어요.")
+                    this.dismiss()
                 }else if(swipeDetector.action == SwipeDetector.Action.RL){
                     //외웠어요 +1 하기
-                    var intent = Intent(this, WordCardPopup::class.java)
-                    intent.putExtra("position",position+1)
-                    this.startActivity(intent)
+                    word.memorize()
+                    Log.e("SWIPE :: ", "외웠어요.")
+                    this.dismiss()
                 }
             }else{
-                var intent = Intent(this, WordCardPopup3::class.java)
-                intent.putExtra("position", position)
-                this.startActivity(intent)
+                Log.e("SWIPE :: ", "터치.")
+                // TODO 진도 팝업 호출
+
             }
         }
+
     }
 }

@@ -4,6 +4,8 @@ object AppManager {
     lateinit var database: WordDB
     var wordList = WordList()
 
+    const val memorize_count = 10
+
     //main activity
     var selectionMode: Boolean = false // true:삭제 / false:기본
     var selectionCount: Int = 0

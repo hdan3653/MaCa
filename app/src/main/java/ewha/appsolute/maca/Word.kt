@@ -21,4 +21,13 @@ data class Word(
     , @ColumnInfo(name="COUNT_MEM") @NotNull var count_mem: Int = 0
     , @ColumnInfo(name="DATE_ADD") @NotNull var date_add: String
     , @ColumnInfo(name="DATE_MEM") var date_mem: String?
-)
+) {
+    fun memorize() {
+        count_mem += 1
+        if(count_mem == AppManager.memorize_count) {
+            // TODO 보관함으로 이동
+        }
+    }
+}
+
+

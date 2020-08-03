@@ -1,10 +1,9 @@
 package ewha.appsolute.maca
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.view.textclassifier.TextSelection
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
@@ -33,15 +32,23 @@ class VocaCardViewHolder(override val containerView: View, context: Context)
                     AppManager.selected.add(adapterPosition)
                     Log.e("holder", "selected : " + AppManager.selectionCount.toString())
 
-//                    textSelection.text = String.format(context.getString(R.string.text_selection), AppManager.selectionCount)
                 }
 
                 Log.e("Selection", AppManager.selected.toString())
 
             } else {
-                var intent = Intent(context, WordCardPopup::class.java)
-                intent.putExtra("position", adapterPosition)
-                context.startActivity(intent)
+                val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                val view = inflater.inflate(R.layout.wordcard2, null)
+
+                var word = AppManager.wordList.getWord(adapterPosition) as Word
+
+                val alertDialog = WordCardPopup(context, adapterPosition, word)
+
+                alertDialog.setContentView(view)
+                alertDialog.show()
+                alertDialog.setOnDismissListener{
+                    Log.e("Alert Dialog", "WordCardPopup Dismissed.")
+                }
             }
         }
     }

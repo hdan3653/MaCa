@@ -60,26 +60,23 @@ class WordList {
     }
 
     fun printWordList(at: Int) {
-        var index = index[at]
-        var id = wordlist[index].id
-        var voca = wordlist[index].voca
-        Log.println(Log.DEBUG, "", "$at\t:\tindex[$at] = $index\t||\tid=$id\t$voca")
+        val index = index[at]
+        val id = wordlist[index].id
+        val voca = wordlist[index].voca
+        val count = wordlist[index].count_mem
+        Log.println(Log.ERROR, "", "$at\t:\tindex[$at] = $index\t||\t$count\t||\tid=$id\t$voca")
     }
 
     fun getWord(i: Int): Word? {
-        var word: Word? = try {
+        return try {
             wordlist[index[i]]
         } catch (e: IndexOutOfBoundsException) {
             null
         }
-
-        return word
     }
 
     fun getWord(s: String): Word? {
-
         var word: Word? = null
-
         try {
             for(i in 0..wordlist.size) {
                 if(wordlist[index[i]].voca == s) {
@@ -103,4 +100,16 @@ class WordList {
 
         return false
     }
+
+    fun getIndex(s: String): Int {
+        var i: Int = -1
+        for(j in 0..wordlist.size) {
+            if(wordlist[index[j]].voca == s) {
+                i = j
+                break
+            }
+        }
+        return i
+    }
+
 }

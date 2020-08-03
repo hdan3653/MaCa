@@ -1,23 +1,16 @@
 package ewha.appsolute.maca
 
 import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.wordcard.*
 import java.util.*
-import ewha.appsolute.maca.Word
 
-class WordCardPopup : AppCompatActivity() {
+class WordCardPopup(context: Context, private var position: Int, private var word: Word) : AlertDialog(context) {
 
     private lateinit var tts:TTS
 
@@ -25,35 +18,23 @@ class WordCardPopup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wordcard)
 
-        tts = TTS(this)
+        tts = TTS(context)
         tts.onInit(TextToSpeech.SUCCESS)
-        Log.e("TTS","on Init")
 
-        var manager = AppManager
+        text_voca.text = word.voca
 
-        var voca=findViewById<TextView>(R.id.text_voca)
-
-        var position:Int=intent.getIntExtra("position",0)
-        var word: Word? = manager.wordList.getWord(position)
-        if(word == null) {
-
-        }
-        voca.text = word?.voca
-
-
-        var ttsButton=findViewById<ImageButton>(R.id.ttsButton)
         ttsButton.setOnClickListener{
-            var message=voca.text
+            var message = word.voca
             tts.speak(message)
         }
 
         editbutton.setOnClickListener {
-            val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.popup_editword, null)
 
-            val alertDialog = EditWordPopup(this)
+            val alertDialog = EditWordPopup(context, word)
 
-            val adapter = VocaCardAdapter(AppManager.wordList, this)
+            val adapter = VocaCardAdapter(AppManager.wordList, context)
 
             alertDialog.setContentView(view)
             alertDialog.show()
@@ -62,17 +43,40 @@ class WordCardPopup : AppCompatActivity() {
             }
         }
 
-        var cardView = findViewById<CardView>(R.id.CardView)
-        cardView.setOnClickListener {
-            var intent = Intent(this, WordCardPopup2::class.java)
-            //여기 순서가 틀려서 position 값이 안 넘어갔음.
-            intent.putExtra("position", position)
-            this.startActivity(intent)
+        tableLayout.setOnClickListener {
+            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view = inflater.inflate(R.layout.wordcard2, null)
+
+            val alertDialog = WordCardPopup2(context, word)
+
+            alertDialog.setContentView(view)
+            alertDialog.show()
+            alertDialog.setOnDismissListener{
+                Log.e("Alert Dialog", "WordCardPopup2 Dismissed.")
+
+                val manager = AppManager.wordList
+                position += 1
+
+                if(position > 0 && position < manager.getItemCount()) {
+                    var temp = manager.getWord(position)
+                    if(temp != null) {
+                        word = temp
+                        text_voca.text = word.voca
+                    } else {
+                        Log.e("Alert Dialog", "WordCardPopup2 Dismissed. - null word")
+                        this.dismiss()
+                    }
+                } else {
+                    Log.e("Alert Dialog", "WordCardPopup2 Dismissed. - $position")
+                    this.dismiss()
+                }
+            }
+
         }
     }
 
-    override fun onDestroy(){
-        super.onDestroy()
+    override fun onStop() {
+        super.onStop()
         tts.destroy()
     }
 }
