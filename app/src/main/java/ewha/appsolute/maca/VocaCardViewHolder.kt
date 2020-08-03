@@ -40,7 +40,7 @@ class VocaCardViewHolder(override val containerView: View, context: Context)
                 val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val view = inflater.inflate(R.layout.wordcard2, null)
 
-                var word = AppManager.wordList.getWord(adapterPosition) as Word
+                val word = AppManager.wordList.getWord(adapterPosition) as Word
 
                 val alertDialog = WordCardPopup(context, adapterPosition, word)
 

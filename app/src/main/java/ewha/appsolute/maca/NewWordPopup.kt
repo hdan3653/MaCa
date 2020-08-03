@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 
 class NewWordPopup(context: Context) : AlertDialog(context) {
 
-    var checked: Int = 0
+    private var checked: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +23,12 @@ class NewWordPopup(context: Context) : AlertDialog(context) {
 
         btn_translate.setOnClickListener {
             if (edit_translate.text.isNotBlank()) {
-                var req = TranslateRequest(this.context)
-                var param = edit_translate.text.toString()
-                var stringRequest: StringRequest = req.makeRequest(param
+                val req = TranslateRequest(this.context)
+                val param = edit_translate.text.toString()
+                val stringRequest: StringRequest = req.makeRequest(param
                     , Response.Listener { response ->
                         Log.d("API Request :: ", response.toString())
-                        var translatedText = JSONObject(response.toString())
+                        val translatedText = JSONObject(response.toString())
                             .getJSONObject("message")
                             .getJSONObject("result")
                             .getString("translatedText")
@@ -51,7 +51,7 @@ class NewWordPopup(context: Context) : AlertDialog(context) {
                     checked = i
                     for (j in 0 until toggle_group.childCount) {
                         if (j != i) {
-                            var button2: ToggleButton = toggle_group[j] as ToggleButton
+                            val button2: ToggleButton = toggle_group[j] as ToggleButton
                             button2.isChecked = false
                         }
                     }

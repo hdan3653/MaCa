@@ -3,14 +3,11 @@ package ewha.appsolute.maca
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-//list 데이터 타입 수정함
+class VocaCardAdapter(private val list: WordList, val context:Context): RecyclerView.Adapter<VocaCardViewHolder>(){
 
-class VocaCardAdapter(val list: WordList, val context:Context): RecyclerView.Adapter<VocaCardViewHolder>(){
-
-    lateinit var viewHolder: VocaCardViewHolder
+    private lateinit var viewHolder: VocaCardViewHolder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocaCardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_vocacard, parent,false)

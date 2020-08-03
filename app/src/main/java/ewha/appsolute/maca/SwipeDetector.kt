@@ -1,12 +1,11 @@
 package ewha.appsolute.maca
 
-import android.app.Notification
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.abs
 
 class SwipeDetector : View.OnTouchListener {
-    private val HORIZONRAL_MIN_DISTANCE = 60
+    private val minDistance = 60
     private var downX: Float = 0.toFloat()
     private var downY: Float = 0.toFloat()
     private var upX: Float = 0.toFloat()
@@ -34,7 +33,7 @@ class SwipeDetector : View.OnTouchListener {
                 upX = event.x
                 val deltaX = downX-upX
 
-                if (abs(deltaX) >HORIZONRAL_MIN_DISTANCE){
+                if (abs(deltaX) >minDistance){
                     if(deltaX<0){
                         action = Action.LR
                         return true

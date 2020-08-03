@@ -51,6 +51,8 @@ class WordCardPopup2(context: Context, private val word: Word) : AlertDialog(con
             if(swipeDetector.swipeDetected()){
                 if(swipeDetector.action == SwipeDetector.Action.LR){
                     Log.e("SWIPE :: ", "모르겠어요.")
+//                    this.setDismissMessage()
+                    // TODO 뒤로가기해도 팝업이 넘어감 -> Dismiss 할 때 플래그 넘겨주기
                     this.dismiss()
                 }else if(swipeDetector.action == SwipeDetector.Action.RL){
                     //외웠어요 +1 하기

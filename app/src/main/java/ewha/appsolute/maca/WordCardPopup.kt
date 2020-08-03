@@ -24,7 +24,7 @@ class WordCardPopup(context: Context, private var position: Int, private var wor
         text_voca.text = word.voca
 
         ttsButton.setOnClickListener{
-            var message = word.voca
+            val message = word.voca
             tts.speak(message)
         }
 
@@ -58,7 +58,7 @@ class WordCardPopup(context: Context, private var position: Int, private var wor
                 position += 1
 
                 if(position > 0 && position < manager.getItemCount()) {
-                    var temp = manager.getWord(position)
+                    val temp = manager.getWord(position)
                     if(temp != null) {
                         word = temp
                         text_voca.text = word.voca
@@ -71,7 +71,6 @@ class WordCardPopup(context: Context, private var position: Int, private var wor
                     this.dismiss()
                 }
             }
-
         }
     }
 
@@ -89,7 +88,7 @@ class TTS(private val context: Context) : TextToSpeech.OnInitListener{
 
         tts = TextToSpeech(context){
             if(it == TextToSpeech.SUCCESS){
-                var result = tts?.setLanguage((Locale.US))
+                val result = tts?.setLanguage((Locale.US))
 
                 if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
                     Toast.makeText(context, "Language net supported", Toast.LENGTH_SHORT).show()

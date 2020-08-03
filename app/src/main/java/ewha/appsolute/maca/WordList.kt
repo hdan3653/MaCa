@@ -5,14 +5,14 @@ import java.lang.Exception
 import java.lang.IndexOutOfBoundsException
 
 class WordList {
-    private var wordlist = ArrayList<Word>()
+    private var wordList = ArrayList<Word>()
     private var index = ArrayList<Int>()
 
     fun init() {
-        if (wordlist.isEmpty()) {
+        if (wordList.isEmpty()) {
             Thread {
-                wordlist = AppManager.database.wordDao().getAll() as ArrayList<Word>
-                for (i in 0 until wordlist.lastIndex) {
+                wordList = AppManager.database.wordDao().getAll() as ArrayList<Word>
+                for (i in 0 until wordList.lastIndex) {
                     index.add(i)
                 }
             }.start()
@@ -34,42 +34,43 @@ class WordList {
     }
 
     fun addWord(word: Word) {
-        wordlist.add(0, word)
+        wordList.add(0, word)
         index = ArrayList()
-        for (i in 0 until wordlist.lastIndex) {
+        for (i in 0 until wordList.lastIndex) {
             index.add(i)
         }
     }
 
     fun removeWord(i: Int) {
-        var dump: Word = getWord(i) as Word
-        wordlist.remove(dump)
+        val dump: Word = getWord(i) as Word
+        wordList.remove(dump)
         index = ArrayList()
-        for (j in 0 until wordlist.lastIndex) {
+        for (j in 0 until wordList.lastIndex) {
             index.add(j)
         }
     }
 
     fun printWordList() {
         for (i in 0..index.lastIndex) {
-            var index = index[i]
-            var id = wordlist[index].id
-            var voca = wordlist[index].voca
-            Log.println(Log.DEBUG, "", "$i\t:\tindex[$i] = $index\t||\tid=$id\t$voca")
+            val index = index[i]
+            val id = wordList[index].id
+            val voca = wordList[index].voca
+            val count = wordList[index].count_mem
+            Log.println(Log.ERROR, "", "$i\t:\tindex[$i] = $index\t||\t$count\t||\tid=$id\t$voca")
         }
     }
 
     fun printWordList(at: Int) {
         val index = index[at]
-        val id = wordlist[index].id
-        val voca = wordlist[index].voca
-        val count = wordlist[index].count_mem
+        val id = wordList[index].id
+        val voca = wordList[index].voca
+        val count = wordList[index].count_mem
         Log.println(Log.ERROR, "", "$at\t:\tindex[$at] = $index\t||\t$count\t||\tid=$id\t$voca")
     }
 
     fun getWord(i: Int): Word? {
         return try {
-            wordlist[index[i]]
+            wordList[index[i]]
         } catch (e: IndexOutOfBoundsException) {
             null
         }
@@ -78,9 +79,9 @@ class WordList {
     fun getWord(s: String): Word? {
         var word: Word? = null
         try {
-            for(i in 0..wordlist.size) {
-                if(wordlist[index[i]].voca == s) {
-                    word = wordlist[index[i]]
+            for(i in 0..wordList.size) {
+                if(wordList[index[i]].voca == s) {
+                    word = wordList[index[i]]
                     break
                 }
             }
@@ -92,7 +93,7 @@ class WordList {
     }
 
     fun isExist(voca: String): Boolean {
-        wordlist.forEach {
+        wordList.forEach {
             if(voca == it.voca) {
                 return true
             }
@@ -103,8 +104,8 @@ class WordList {
 
     fun getIndex(s: String): Int {
         var i: Int = -1
-        for(j in 0..wordlist.size) {
-            if(wordlist[index[j]].voca == s) {
+        for(j in 0..wordList.size) {
+            if(wordList[index[j]].voca == s) {
                 i = j
                 break
             }

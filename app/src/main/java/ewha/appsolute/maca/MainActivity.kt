@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var isRandom: Boolean = false
+    private var isRandom: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +46,9 @@ class MainActivity : AppCompatActivity() {
         //Add Button
         btn_add.setOnClickListener {
             val inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val view = inflater.inflate(R.layout.popup_newword, null)
-
             val alertDialog = NewWordPopup(this)
+
+            val view = inflater.inflate(R.layout.popup_newword, null)
 
             alertDialog.setContentView(view)
             alertDialog.show()
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         //Storage Button
         btn_storage.setOnClickListener {
-            var intent = Intent(this, StorageActivity::class.java)
+            val intent = Intent(this, StorageActivity::class.java)
             this.startActivity(intent)
         }
 
@@ -78,11 +78,11 @@ class MainActivity : AppCompatActivity() {
 
         btn_confirm.setOnClickListener {
             Log.e("Confirm", AppManager.selected.toString())
-            AppManager.selected.forEach() { index ->
+            AppManager.selected.forEach { index ->
                 AppManager.wordList.printWordList(index)
 
                 Thread {
-                    var dump: Word = AppManager.wordList.getWord(index) as Word
+                    val dump: Word = AppManager.wordList.getWord(index) as Word
                     AppManager.database.wordDao().delete(dump.voca)
                     AppManager.wordList.removeWord(index)
                 }.start()
