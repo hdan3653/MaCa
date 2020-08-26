@@ -3,6 +3,7 @@ package ewha.appsolute.maca
 object AppManager {
     lateinit var database: WordDB
     var wordList = WordList()
+    var storageList = WordList()
 
     const val memorize_count = 10
 

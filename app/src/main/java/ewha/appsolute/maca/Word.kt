@@ -3,6 +3,7 @@ package ewha.appsolute.maca
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.synthetic.main.popup_newword.*
 import org.jetbrains.annotations.NotNull
 
 enum class POS{
@@ -24,7 +25,7 @@ data class Word(
     fun memorize() {
         count_mem += 1
         if(count_mem == AppManager.memorize_count) {
-            // TODO 보관함으로 이동
+            AppManager.storageList.addWord(this)
         }
     }
 }

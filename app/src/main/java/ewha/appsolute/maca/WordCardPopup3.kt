@@ -22,7 +22,7 @@ class WordCardPopup3 : AppCompatActivity() {
 
         //닫기
         backButton.setOnClickListener {
-            val intent = Intent(this, StorageActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             this.startActivity(intent)
         }
 
