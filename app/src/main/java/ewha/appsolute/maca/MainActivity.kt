@@ -11,9 +11,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
 
+/*
+TODO
+    - 스와이프 애니메이션
+    - 보관함 갈 때 인텐트 효과 뭔가 어색함
+    - no data
+    - 선택함 개수 프린트 해주기
+    - 데이터베이스 업데이트 언제 할 지
+ */
+
 class MainActivity : AppCompatActivity() {
 
     private var isRandom: Boolean = false
+
+    //Recycler View
+    private val adapter = VocaCardAdapter(AppManager.wordList, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +38,21 @@ class MainActivity : AppCompatActivity() {
         ).build()
 
         //WordList Initialize
-        AppManager.wordList.init()
+        AppManager.wordList.init(0)
         AppManager.wordList.printWordList()
 
-        //Recycler View
-        val adapter = VocaCardAdapter(AppManager.wordList, this)
+        //WordList Initialize
+        AppManager.storageList.init(1)
+        AppManager.storageList.addWord(
+            Word(12938, "Testing", POS.NOUN.ordinal
+                , "테스트", "테에에에에스으으으으트으으으"
+                , true, 13, "2010-10-30", "2020-02-04")
+        )
+
+        AppManager.storageList.printWordList()
+
+//        val count = wordList.size
+//        Log.e("LIST COUNT", "$count data.")
 
         vocaCardView.adapter = adapter
         vocaCardView.layoutManager = GridLayoutManager(this, 2)

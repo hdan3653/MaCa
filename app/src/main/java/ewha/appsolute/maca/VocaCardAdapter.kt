@@ -11,7 +11,7 @@ class VocaCardAdapter(private val list: WordList, val context:Context): Recycler
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocaCardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_vocacard, parent,false)
-        viewHolder = VocaCardViewHolder(view, context)
+        viewHolder = VocaCardViewHolder(view, context, this)
         return viewHolder
     }
 

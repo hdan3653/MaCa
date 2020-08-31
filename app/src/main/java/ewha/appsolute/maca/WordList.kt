@@ -8,10 +8,17 @@ class WordList {
     private var wordList = ArrayList<Word>()
     private var index = ArrayList<Int>()
 
-    fun init() {
+    fun init(is_saved: Int) {
         if (wordList.isEmpty()) {
             Thread {
-                wordList = AppManager.database.wordDao().getAll() as ArrayList<Word>
+                wordList = if(is_saved == 0) {
+                    Log.e("INIT", "get word list")
+                    AppManager.database.wordDao().getWordList() as ArrayList<Word>
+                } else {
+                    Log.e("INIT", "get storage list")
+                    AppManager.database.wordDao().getStorageList() as ArrayList<Word>
+                }
+
                 for (i in 0 until wordList.lastIndex) {
                     index.add(i)
                 }
@@ -44,6 +51,14 @@ class WordList {
     fun removeWord(i: Int) {
         val dump: Word = getWord(i) as Word
         wordList.remove(dump)
+        index = ArrayList()
+        for (j in 0 until wordList.lastIndex) {
+            index.add(j)
+        }
+    }
+
+    fun removeWord(word: Word) {
+        wordList.remove(word)
         index = ArrayList()
         for (j in 0 until wordList.lastIndex) {
             index.add(j)

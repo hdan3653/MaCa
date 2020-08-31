@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 
-class VocaCardViewHolder(override val containerView: View, context: Context)
+class VocaCardViewHolder(override val containerView: View, context: Context, adapter: VocaCardAdapter)
     : RecyclerView.ViewHolder(containerView), LayoutContainer{
 
     var textView: TextView = containerView.findViewById(R.id.text_voca)
@@ -47,10 +47,9 @@ class VocaCardViewHolder(override val containerView: View, context: Context)
                 alertDialog.setContentView(view)
                 alertDialog.show()
                 alertDialog.setOnDismissListener{
-                    Log.e("Alert Dialog", "WordCardPopup Dismissed.")
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
     }
-
 }

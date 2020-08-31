@@ -6,14 +6,6 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import ewha.appsolute.maca.AppManager.storageList
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.btn_cancel
-import kotlinx.android.synthetic.main.activity_main.btn_confirm
-import kotlinx.android.synthetic.main.activity_main.btn_delete
-import kotlinx.android.synthetic.main.activity_main.btn_sort
-import kotlinx.android.synthetic.main.activity_main.text_selection
-import kotlinx.android.synthetic.main.activity_main.vocaCardView
 import kotlinx.android.synthetic.main.activity_storage.*
 
 class StorageActivity : AppCompatActivity() {
@@ -24,12 +16,13 @@ class StorageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_storage)
 
-        //WordList Initialize
-        storageList.init()
-        storageList.printWordList()
+        AppManager.storageList.printWordList()
+
+        val count = AppManager.storageList.getItemCount()
+        Log.e("LIST COUNT", "$count data.")
 
         //Recycler View
-        val adapter = StorageCardAdapter(storageList, this)
+        val adapter = StorageCardAdapter(AppManager.storageList, this)
 
         storageCardView.adapter = adapter
         storageCardView.layoutManager = GridLayoutManager(this, 2)
@@ -37,9 +30,9 @@ class StorageActivity : AppCompatActivity() {
         //Sort Button
         btn_sort.setOnClickListener {
             isRandom = !isRandom
-           storageList.shuffle(isRandom)
+            AppManager.storageList.shuffle(isRandom)
             (storageCardView.adapter as StorageCardAdapter).notifyDataSetChanged()
-            storageList.printWordList()
+            AppManager.storageList.printWordList()
         }
 
         //Home Button
@@ -57,25 +50,25 @@ class StorageActivity : AppCompatActivity() {
         btn_cancel.setOnClickListener {
             AppManager.selectionMode = false
             AppManager.selectionCount = 0
-            (vocaCardView.adapter as StorageCardAdapter).notifyDataSetChanged()
+            (storageCardView.adapter as StorageCardAdapter).notifyDataSetChanged()
             setSelectionMode()
         }
 
         btn_confirm.setOnClickListener {
             Log.e("Confirm", AppManager.selected.toString())
             AppManager.selected.forEach { index ->
-                storageList.printWordList(index)
+                AppManager.storageList.printWordList(index)
 
                 Thread {
                     val dump: Word = AppManager.storageList.getWord(index) as Word
                     AppManager.database.wordDao().delete(dump.voca)
-                    storageList.removeWord(index)
+                    AppManager.storageList.removeWord(index)
                 }.start()
             }
 
             AppManager.selectionMode = false
             AppManager.selectionCount = 0
-            (vocaCardView.adapter as StorageCardAdapter).notifyDataSetChanged()
+            (storageCardView.adapter as StorageCardAdapter).notifyDataSetChanged()
             setSelectionMode()
         }
 
@@ -86,7 +79,7 @@ class StorageActivity : AppCompatActivity() {
             //Delete
             btn_sort.visibility = View.GONE
             btn_delete.visibility = View.INVISIBLE
-            btn_storage.visibility = View.INVISIBLE
+            btn_home.visibility = View.INVISIBLE
 
             btn_cancel.visibility = View.VISIBLE
             btn_confirm.visibility = View.VISIBLE
@@ -97,7 +90,7 @@ class StorageActivity : AppCompatActivity() {
             //Normal
             btn_sort.visibility = View.VISIBLE
             btn_delete.visibility = View.VISIBLE
-            btn_storage.visibility = View.VISIBLE
+            btn_home.visibility = View.VISIBLE
 
             btn_cancel.visibility = View.GONE
             btn_confirm.visibility = View.GONE

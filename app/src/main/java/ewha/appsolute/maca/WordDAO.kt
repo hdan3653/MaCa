@@ -7,6 +7,12 @@ interface WordDAO {
     @Query("SELECT * FROM WORD ORDER BY ID DESC")
     fun getAll(): List<Word>
 
+    @Query("SELECT * FROM WORD WHERE IS_SAVED is 0 ORDER BY ID DESC")
+    fun getWordList(): List<Word>
+
+    @Query("SELECT * FROM WORD WHERE IS_SAVED is 1 ORDER BY ID DESC")
+    fun getStorageList(): List<Word>
+
     @Query("SELECT * FROM WORD WHERE VOCA IN (:voca)")
     fun getWord(voca: String): List<Word>
 

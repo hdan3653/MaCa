@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.wordcard.*
-import java.util.*
 
 class StorageCardPopup(context: Context, private var position: Int, private var word: Word) : AlertDialog(context) {
 

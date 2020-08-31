@@ -1,5 +1,6 @@
 package ewha.appsolute.maca
 
+import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -24,9 +25,16 @@ data class Word(
 ) {
     fun memorize() {
         count_mem += 1
-        if(count_mem == AppManager.memorize_count) {
+        if(count_mem >= AppManager.memorize_count) {
+            Log.e("WORD :: ", "Data Moved.")
+            this.isSaved = true
             AppManager.storageList.addWord(this)
+            AppManager.wordList.removeWord(this)
         }
+
+        //TEST
+        AppManager.wordList.printWordList()
+        AppManager.storageList.printWordList()
     }
 }
 
